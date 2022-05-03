@@ -4,11 +4,32 @@
 	"description": "An ES-spec-compliant `parseInt` shim/polyfill/replacement that works as far down as ES3",
 	"main": "index.js",
 	"exports": {
-		".": "./index.js",
+		".": [
+			{
+				"import": "./index.mjs",
+				"require": "./index.js",
+				"default": "./index.js"
+			},
+			"./index.js"
+		],
+		"./auto": "./auto.js",
+		"./polyfill": "./polyfill.js",
+		"./implementation": "./implementation.js",
+		"./shim": "./shim.js",
 		"./package.json": "./package.json"
 	},
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"prepublishOnly": "safe-publish-latest",
+		"prepublish": "not-in-publish || npm run prepublishOnly",
+		"pretest": "npm run lint",
+		"lint": "eslint --ext=js,mjs .",
+		"postlint": "es-shim-api --bound",
+		"tests-only": "nyc tape 'test/**/*.js'",
+		"tests-esm": "nyc node test/index.mjs",
+		"test": "npm run tests-only && npm run tests-esm",
+		"posttest": "aud --production",
+		"version": "auto-changelog && git add CHANGELOG.md",
+		"postversion": "auto-changelog && git add CHANGELOG.md && git commit --no-edit --amend && git tag -f \"v$(node -e \"console.log(require('./package.json').version)\")\""
 	},
 	"repository": {
 		"type": "git",
@@ -16,16 +37,47 @@
 	},
 	"keywords": [
 		"parseInt",
-		"Number.parseInt",
+		"number",
+		"is-finite",
+		"log",
 		"shim",
 		"polyfill",
 		"es-shim",
 		"API"
 	],
 	"author": "Jordan Harband <ljharb@gmail.com>",
+	"funding": {
+		"url": "https://github.com/es-shims/parseInt?sponsor=1"
+	},
 	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/es-shims/parseInt/issues"
 	},
-	"homepage": "https://github.com/es-shims/parseInt#readme"
+	"homepage": "https://github.com/es-shims/parseInt#readme",
+	"devDependencies": {
+		"@es-shims/api": "^2.2.3",
+		"@ljharb/eslint-config": "^21.0.0",
+		"aud": "^2.0.0",
+		"auto-changelog": "^2.4.0",
+		"eslint": "=8.8.0",
+		"for-each": "^0.3.3",
+		"functions-have-names": "^1.2.3",
+		"has-symbols": "^1.0.3",
+		"nyc": "^10.3.2",
+		"safe-publish-latest": "^2.0.0",
+		"tape": "^5.5.3"
+	},
+	"dependencies": {
+		"call-bind": "^1.0.2",
+		"define-properties": "^1.1.4",
+		"globalthis": "^1.0.2"
+	},
+	"auto-changelog": {
+		"output": "CHANGELOG.md",
+		"template": "keepachangelog",
+		"unreleased": false,
+		"commitLimit": false,
+		"backfillLimit": false,
+		"hideCredit": true
+	}
 }

@@ -1,0 +1,25 @@
+{
+	"root": true,
+
+	"extends": "@ljharb",
+
+	"rules": {
+		"new-cap": ["error", {
+			"capIsNewExceptions": [
+				"ToString",
+				"TrimString",
+				"ToInt32",
+			],
+		}],
+		"multiline-comment-style": "off",
+	},
+
+	"overrides": [
+		{
+			"files": "test/**",
+			"rules": {
+				"max-lines-per-function": "off",
+			},
+		},
+	],
+}
