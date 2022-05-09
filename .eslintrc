@@ -16,6 +16,12 @@
 
 	"overrides": [
 		{
+			"files": "noProto.js",
+			"rules": {
+				"id-length": "off",
+			},
+		},
+		{
 			"files": "test/**",
 			"rules": {
 				"max-lines-per-function": "off",
