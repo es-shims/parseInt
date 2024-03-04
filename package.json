@@ -73,6 +73,7 @@
 	"dependencies": {
 		"call-bind": "^1.0.7",
 		"define-properties": "^1.2.1",
+		"es-abstract": "^1.22.5",
 		"globalthis": "^1.0.3"
 	},
 	"auto-changelog": {

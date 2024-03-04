@@ -1,8 +1,8 @@
 'use strict';
 
-var ToString = require('es-abstract/2021/ToString');
-var TrimString = require('es-abstract/2021/TrimString');
-var ToInt32 = require('es-abstract/2021/ToInt32');
+var ToString = require('es-abstract/2023/ToString');
+var TrimString = require('es-abstract/2023/TrimString');
+var ToInt32 = require('es-abstract/2023/ToInt32');
 
 var regexTester = require('es-abstract/helpers/regexTester');
 
