@@ -71,8 +71,8 @@
 		"tape": "^5.7.5"
 	},
 	"dependencies": {
-		"call-bind": "^1.0.2",
-		"define-properties": "^1.1.4",
+		"call-bind": "^1.0.7",
+		"define-properties": "^1.2.1",
 		"globalthis": "^1.0.3"
 	},
 	"auto-changelog": {
