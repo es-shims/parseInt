@@ -4,9 +4,8 @@ var ToString = require('es-abstract/2023/ToString');
 var TrimString = require('es-abstract/2023/TrimString');
 var ToInt32 = require('es-abstract/2023/ToInt32');
 
-var regexTester = require('es-abstract/helpers/regexTester');
-
-var callBound = require('call-bind/callBound');
+var regexTester = require('safe-regex-test');
+var callBound = require('call-bound');
 
 var hasSign = regexTester(/^[-+]/);
 var hasHexPrefix = regexTester(/^0[xX]/);
