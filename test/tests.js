@@ -61,6 +61,14 @@ module.exports = function (parseInt, t) {
 		st.end();
 	});
 
+	t.test('returns NaN for out-of-range radix', function (st) {
+		st.equal(parseInt('10', 1), NaN, 'radix 1 returns NaN');
+		st.equal(parseInt('10', 37), NaN, 'radix 37 returns NaN');
+		st.equal(parseInt('10', -1), NaN, 'radix -1 returns NaN');
+
+		st.end();
+	});
+
 	t.test('NaN parsing', function (st) {
 		st.equal(parseInt(), NaN);
 		st.equal(parseInt(undefined), NaN);
